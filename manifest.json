@@ -1,0 +1,22 @@
+{
+	"manifest_version": 2,
+	"name": "FurAffinity: Dead Account Finder",
+	"version": "1.0",
+	"description": "Find dead or moved accounts amonst your followed artists. Source: https://github.com/dogpixels/furaffinity-dead-account-finder",
+	"icons": {
+		"16": "img/fadaf16.png",
+		"32": "img/fadaf32.png",
+		"48": "img/fadaf48.png",
+		"64": "img/fadaf64.png"
+	},
+	"content_scripts": [
+		{
+			"matches": ["*://*.furaffinity.net/*"],
+			"js": ["watchlint.js", "moment.js"],
+			"css": ["watchlint.css"]
+		}
+	],
+	"permissions": [
+		"*://*.facdn.net/*"
+	]
+}

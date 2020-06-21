@@ -1,0 +1,68 @@
+:root {
+	--blink-state1: #e5e5e5;
+	--blink-state2: transparent;
+}
+.watchlint-blink:before {
+	animation: _blink 1.5s infinite;
+}
+
+#watchlint-scanbutton {
+	position: absolute;
+	top: 6px;
+	right: 6px;
+}
+
+.watchlint-container {
+	position: relative;
+}
+
+.watchlint-container:before {
+	display: block;
+	content: ' ';
+	width: 0.8em;
+	height: 0.8em;
+	border-radius: 100%;
+	position: absolute;
+	left: -1px;
+	top: 5px;
+}
+
+.watchlint-age-0:before  {background-color: #FF0000}
+.watchlint-age-1:before  {background-color: #FF3400}
+.watchlint-age-2:before  {background-color: #FF6900}
+.watchlint-age-3:before  {background-color: #FF9E00}
+.watchlint-age-4:before  {background-color: #FFD300}
+.watchlint-age-5:before  {background-color: #F7FF00}
+.watchlint-age-6:before  {background-color: #C2FF00}
+.watchlint-age-7:before  {background-color: #8DFF00}
+.watchlint-age-8:before  {background-color: #58FF00}
+.watchlint-age-9:before  {background-color: #24FF00}
+.watchlint-age-10:before {background-color: #00FF00}
+
+@keyframes _blink {
+    0%	{background-color: var(--blink-state1)}
+    49%	{background-color: var(--blink-state1)}
+    50%	{background-color: var(--blink-state2)}
+    99%	{background-color: var(--blink-state2)}
+    100%{background-color: var(--blink-state1)}
+}
+
+.watchlint-disabled:before {
+	background-color: #000;
+}
+
+/* 
+.watchlint-disabled:after {
+	content: ' ';
+	position: absolute;
+	left: -1.25px;
+	top: 9.5px;
+	width: 0.8em;
+	height: 3px;
+	background-color: #fff;
+}
+*/
+
+.watchlint-empty:before {
+	background-color: #f00;
+}
