@@ -15,8 +15,9 @@ The results will be displayed by a colored dot before each name.
 
 * **green**: account has submitted art not long ago.
 * **yellow**: account has not been active for a while.
-* **red**: account has not submitted anything in a long while, or their gallery is empty.
-* **black**: this account seem to be disabled or deactivated.
+* **red**: account has not submitted anything in a long while.
+* **white & red**: gallery has been found empty.
+* **black & red**: this account seem to be disabled or deactivated.
 
 No further action will be taken on your account. This tool merely saves you the time to check out each account one by one by indicating which accounts to look at.
 
