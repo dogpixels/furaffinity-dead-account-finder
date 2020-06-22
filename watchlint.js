@@ -36,6 +36,7 @@ async function watchlint_scan_all() {
 	}
 
 	button.disabled = true;
+	button.innerText = '';
 
 	for (const key in stats) {
 		if (stats.hasOwnProperty(key)) {
