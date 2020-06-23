@@ -4,7 +4,7 @@ var links_selector = '.watch-list-items';
 var regex = {
 	name: /title>Userpage of ([\w-]+)/gm,
 	last_submission_age: {
-		regex: /uploaded.*[>"](.*[AP]M)"/gm,
+		regex: /uploaded.*[>"](.*[AP]M)/gm,
 		result: 'MMM DD, YYYY hh:mm A'
 	},
 	no_submissions: /This\suser\shas\sno\ssubmissions/gm,
@@ -119,9 +119,13 @@ function watchlint_evaluate_last_submission_age(name, html) {
 		let date = regex.last_submission_age.regex.exec(html)[1];
 		age = Math.abs(moment(date, regex.last_submission_age.result).diff(moment(), 'months'));
 		console.info(`[fadaf] determined last submission date for '${name}': ${date} (${age} months ago)`);
+
+		if (isNaN(age))
+			throw "[fadaf] unknown parse miss in last submission date evaluation";
 	}
 	catch (ex) {
-		console.warn(`[fadaf] failed to evaluate last submission age for '${name}'.`);
+		console.error(age);
+		console.warn(`[fadaf] failed to evaluate last submission age for '${name}'.`, ex);
 		return {age: age, factor: -1};
 	}
 
