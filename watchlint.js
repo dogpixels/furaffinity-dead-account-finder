@@ -4,7 +4,7 @@ var links_selector = '.watch-list-items';
 var regex = {
 	name: /title>Userpage of ([\w-]+)/gm,
 	last_submission_age: {
-		regex: /uploaded.*title="([^"]+)"/gm,
+		regex: /uploaded.*[>"](.*[AP]M)"/gm,
 		result: 'MMM DD, YYYY hh:mm A'
 	},
 	no_submissions: /This\suser\shas\sno\ssubmissions/gm,
