@@ -86,6 +86,9 @@
 a:hover > .watchlint-popup {
 	display: block;
 }
+a:hover > .watchlint-popup:hover {
+	display: none;
+}
 
 .watchlint-popup {
 	display: none;
