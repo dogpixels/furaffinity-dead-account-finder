@@ -1,6 +1,9 @@
 var list_selector = `.section-body.watch-list`;
 var links_selector = '.watch-list-items';
 
+var fdaf_interval = 2000;
+var fdaf_show_patreon = false;
+
 var regex = {
 	name: /title>Userpage of ([\w-]+)/gm,
 	last_submission_age: {
@@ -8,7 +11,8 @@ var regex = {
 		result: 'MMM DD, YYYY hh:mm A'
 	},
 	no_submissions: /This\suser\shas\sno\ssubmissions/gm,
-	disabled: /has\svoluntarily\sdisabled\saccess|deactivated\sby\sthe\sowner/gm
+	disabled: /has\svoluntarily\sdisabled\saccess|deactivated\sby\sthe\sowner/gm,
+	patreon: /[Pp]atreon/gm
 }
 
 
@@ -57,7 +61,7 @@ async function watchlint_scan_all() {
 		let link = container.querySelector('a');
 		container.classList.add('watchlint-container', 'watchlint-blink');
 
-		await sleep(2000); // be nice to FA servers
+		await sleep(fdaf_interval); // be nice to FA servers
 
 		try {
 			let name = '(unknown)';
@@ -91,6 +95,12 @@ async function watchlint_scan_all() {
 				container.classList.add('watchlint-empty');
 				watchlint_attach_popup(link, 'gallery empty :(');
 				console.info(`[fadaf] identified empty gallery for '${name}'`);
+			}
+
+			if (fdaf_show_patreon) {
+				if (watchlint_has_patreon(html)) {
+					console.info(`[fdaf] possible patreon found: ${link.href}`);
+				}
 			}
 		}
 		catch(ex) {
@@ -147,6 +157,11 @@ function watchlint_attach_popup(target, content) {
 	div.classList.add('watchlint-popup');
 	div.innerText = content;
 	target.append(div);
+}
+
+function watchlint_has_patreon(html) {
+	regex.patreon.lastIndex = 0;
+	return regex.patreon.test(html);
 }
 
 function sleep(milliseconds) {
